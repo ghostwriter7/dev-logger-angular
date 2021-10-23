@@ -35,4 +35,19 @@ export class LogService {
   setFormLog(log: Log) {
     this.logSource.next(log);
   }
+
+  addLog(log: Log) {
+    this.logs.unshift(log);
+  }
+
+  updateLog(updLog: Log) {
+    const idxForRemoval = this.logs.findIndex((log) => log.id === updLog.id);
+    this.logs.splice(idxForRemoval, 1);
+    this.logs.unshift(updLog);
+  }
+
+  deleteLog(log: Log) {
+    const idxForRemoval = this.logs.findIndex((cur) => log.id === cur.id);
+    this.logs.splice(idxForRemoval, 1);
+  }
 }
