@@ -1,5 +1,5 @@
 export interface Log {
-  id: String;
-  text: String;
+  id: string;
+  text: string;
   date: any;
 }

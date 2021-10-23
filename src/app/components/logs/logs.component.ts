@@ -8,11 +8,16 @@ import { Log } from '../../models/Log';
   styleUrls: ['./logs.component.css'],
 })
 export class LogsComponent implements OnInit {
-  logs?: Log[];
+  logs!: Log[];
 
   constructor(private logService: LogService) {}
 
   ngOnInit(): void {
-    this.logs = this.logService.getLogs();
+    this.logService.getLogs().subscribe((logs) => {
+      this.logs = logs;
+    });
+  }
+  onSelect(log: Log) {
+    this.logService.setFormLog(log);
   }
 }
