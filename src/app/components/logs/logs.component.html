@@ -1,7 +1,8 @@
-<ul class="list-group">
+<ul class="list-group" *ngIf="loaded && logs.length > 0; else msg">
   <li
     *ngFor="let log of logs"
     class="list-group-item d-flex justify-content-between align-items-center"
+    [class.list-group-item-secondary]="log.id === selectedLog.id"
   >
     <a (click)="onSelect(log)" href="#">{{ log.text }}</a>
     <div>
@@ -10,3 +11,8 @@
     </div>
   </li>
 </ul>
+<ng-template #msg
+  ><p class="lead">There are no logs in the system</p></ng-template
+>
+
+<div *ngIf="!loaded">Loading...</div>
